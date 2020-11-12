@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Clojure 101 for Javascripters</title>
+<meta name="author" content="(Matias Hernández)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="/assets/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="/assets/reveal.js/dist/theme/moon.css" id="theme"/>
+
+<link rel="stylesheet" href="/assets/local.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '/assets/reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<meta name="description" content="Clojure 101 para Javascripters">
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Clojure 101 for Javascripters</h1><h2 class="author">Matias Hernández</h2><p class="date">Facebook Developers Circles: Santiago</p>
+</section>
+
+
+<section>
+<section id="slide-org3090a2a">
+<h2 id="org3090a2a"><span class="section-number-2">1</span> 👋 Hola!</h2>
+
+<div id="orgece19b8" class="figure">
+<p><img src="/assets/images/modus.png" alt="modus.png" width="200px" align="center" />
+</p>
+</div>
+<p class="fragment (fade-in)">
+Es una consultora global, parte del Inc 5000
+</p>
+<p class="fragment (fade-in)">
+We are hiring!
+<a href="https://moduscreate.com/careers" class="fragment (fade-in)">https://moduscreate.com/careers</a>
+</p>
+<aside class="notes">
+<ul>
+<li>Soy Matias Hernandez, Ingeniero de Software en Modus Create</li>
+<li>LLevo 10 años trabajando remoto</li>
+
+</ul>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-orga6e2b38">
+<h2 id="orga6e2b38"><span class="section-number-2">2</span> 👋 Hola!</h2>
+
+<div id="orgbad6649" class="figure">
+<p><img src="/assets/images/egghead.png" alt="egghead.png" width="140px" />
+</p>
+</div>
+
+<p class="fragment (fade-in)">
+Video tutorials for badass developers
+<a href="https://egghead.io" class="fragment (fade-in)">https://egghead.io</a>
+</p>
+<aside class="notes">
+<ul>
+<li>Y Soy instructor en egghead.io</li>
+<li>Saben de egghead?</li>
+<li>Hoy sorteamos 1 suscripción!</li>
+
+</ul>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-org24a4c82">
+<h2 id="org24a4c82"><span class="section-number-2">3</span> 👋 Hola!</h2>
+
+<div id="orgc0b635a" class="figure">
+<p><img src="/assets/images/auth0.png" alt="auth0.png" width="140px" />
+</p>
+</div>
+
+<p>
+An Authentication and authorization service for your app.
+</p>
+
+<aside class="notes">
+<ul>
+<li>Soy Auth0 Ambassador.</li>
+
+</ul>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org6d2c9ae">
+<h2 id="org6d2c9ae"><span class="section-number-2">4</span> 👋 Hola!</h2>
+<center style="margin: 20px auto; display:flex; flex-direction:row; flex:1; justify-content: space-between; width: 80%">
+<div style="display: flex; flex-direction: column; align-content: center; align-self:flex-start; justify-content: center;height:220px;">
+
+<div id="org3d042b3" class="figure">
+<p><img src="/assets/images/cafecontech.png" alt="cafecontech.png" width="190px" />
+</p>
+</div>
+
+<p>
+<a href="http://www.cafecon.tech">http://www.cafecon.tech</a>
+</p>
+</div>
+<div style="display: flex; flex-direction: column; align-content: center; align-self:flex-start; justify-content: center;height: 220px;margin-top:-30px">
+
+<div id="orgb17997d" class="figure">
+<p><img src="/assets/images/controlremoto.png" alt="controlremoto.png" width="200px" />
+</p>
+</div>
+
+<p style="position: absolute; bottom: -5px; right: 10px;">
+<a href="http://controlremoto.io" style="position: absolute; bottom: -5px; right: 10px;">http://controlremoto.io</a>
+</p>
+</div>
+</center>
+
+<aside class="notes">
+<p>
+Y además tengo dos podcasts
+Cafe con Tech y Control Remoto donde conversamos sobre la vida y el trabajo remoto
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgf442fdf">
+<h2 id="orgf442fdf"><span class="section-number-2">5</span> Clojure</h2>
+
+<div id="org93eb890" class="figure">
+<p><img src="/assets/images/clojure.png" alt="clojure.png" width="40%" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgb438727">
+<h2 id="orgb438727"><span class="section-number-2">6</span> ¿Por que?</h2>
+
+<div id="orgdc2cc5c" class="figure">
+<p><img src="https://elvortex.com/wp-content/uploads/2013/01/but-why-meme-generator-but-why-84103d.jpg" alt="but-why-meme-generator-but-why-84103d.jpg" />
+</p>
+</div>
+<aside class="notes">
+<p>
+Por que es bueno aprender otros lenguajes?
+Esta es la BeerJS. Todos usamos mayoritariamente JS cierto?
+</p>
+
+<p>
+Y queremos ser mejores, y una forma de serlo es expandiendo nuestros horizontes!
+</p>
+
+<p>
+Clojure permite desarrollar soluciones y experimentos de forma facil y confiable
+</p>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-orge539d5b">
+<h2 id="orge539d5b"><span class="section-number-2">7</span> $$$</h2>
+
+<div id="orgdb63aa1" class="figure">
+<p><img src="/assets/images/money.png" alt="money.png" width="50%" />
+</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgec633fc">
+<h2 id="orgec633fc"><span class="section-number-2">8</span> $$$</h2>
+
+<div id="org9a0c636" class="figure">
+<p><img src="/assets/images/usedby.png" alt="usedby.png" width="70%" />
+</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orga3a0a73">
+<h2 id="orga3a0a73"><span class="section-number-2">9</span> ¿Qué es?</h2>
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><code trim><span style="color: #51afef;">(</span><span style="color: #51afef;">defn</span> <span style="color: #c678dd;">game-panel</span> <span style="color: #c678dd;">[</span>frame game<span style="color: #c678dd;">]</span>
+  <span style="color: #c678dd;">(</span>proxy <span style="color: #98be65;">[</span>JPanel ActionListener KeyListener<span style="color: #98be65;">]</span> <span style="color: #98be65;">[]</span>
+    <span style="color: #98be65;">(</span>paintComponent <span style="color: #51afef;">[</span>g<span style="color: #51afef;">]</span>
+      <span style="color: #51afef;">(</span>proxy-super paintComponent g<span style="color: #51afef;">)</span>
+      <span style="color: #51afef;">(</span>paint g <span style="color: #c678dd;">(</span>@game <span style="color: #a9a1e1;">:snake</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+      <span style="color: #51afef;">(</span>paint g <span style="color: #c678dd;">(</span>@game <span style="color: #a9a1e1;">:apple</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span><span style="color: #98be65;">)</span>
+    <span style="color: #5B6268;">; START: swap!</span>
+    <span style="color: #98be65;">(</span>actionPerformed <span style="color: #51afef;">[</span>e<span style="color: #51afef;">]</span>
+      <span style="color: #51afef;">(</span>swap! game update-positions<span style="color: #51afef;">)</span>
+      <span style="color: #51afef;">(</span><span style="color: #51afef;">when</span> <span style="color: #c678dd;">(</span>lose? <span style="color: #98be65;">(</span>@game <span style="color: #a9a1e1;">:snake</span><span style="color: #98be65;">)</span><span style="color: #c678dd;">)</span>
+    <span style="color: #c678dd;">(</span>swap! game reset-game<span style="color: #c678dd;">)</span>
+    <span style="color: #c678dd;">(</span><span style="color: #ECBE7B;">JOptionPane</span>/showMessageDialog frame <span style="color: #98be65;">"You lose!"</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+    <span style="color: #5B6268;">; END: swap!</span>
+      <span style="color: #51afef;">(</span><span style="color: #51afef;">when</span> <span style="color: #c678dd;">(</span>win? <span style="color: #98be65;">(</span>@game <span style="color: #a9a1e1;">:snake</span><span style="color: #98be65;">)</span><span style="color: #c678dd;">)</span>
+    <span style="color: #c678dd;">(</span>swap! game reset-game<span style="color: #c678dd;">)</span>
+    <span style="color: #c678dd;">(</span><span style="color: #ECBE7B;">JOptionPane</span>/showMessageDialog frame <span style="color: #98be65;">"You win!"</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+      <span style="color: #51afef;">(</span>.repaint this<span style="color: #51afef;">)</span><span style="color: #98be65;">)</span>
+    <span style="color: #98be65;">(</span>keyPressed <span style="color: #51afef;">[</span>e<span style="color: #51afef;">]</span>
+      <span style="color: #51afef;">(</span>swap! game update-direction <span style="color: #c678dd;">(</span>dirs <span style="color: #98be65;">(</span>.getKeyCode e<span style="color: #98be65;">)</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span><span style="color: #98be65;">)</span>
+    <span style="color: #98be65;">(</span>getPreferredSize <span style="color: #51afef;">[]</span>
+      <span style="color: #51afef;">(</span>Dimension. <span style="color: #c678dd;">(</span>* <span style="color: #98be65;">(</span>inc width<span style="color: #98be65;">)</span> point-size<span style="color: #c678dd;">)</span>
+          <span style="color: #c678dd;">(</span>* <span style="color: #98be65;">(</span>inc height<span style="color: #98be65;">)</span> point-size<span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span><span style="color: #98be65;">)</span>
+    <span style="color: #98be65;">(</span>keyReleased <span style="color: #51afef;">[</span>e<span style="color: #51afef;">]</span><span style="color: #98be65;">)</span>
+    <span style="color: #98be65;">(</span>keyTyped <span style="color: #51afef;">[</span>e<span style="color: #51afef;">]</span><span style="color: #98be65;">)</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+</code></pre>
+</div>
+
+<aside class="notes">
+<p>
+Esto es, un sin fin de parentesis y funciones!
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgb31bd57">
+<h2 id="orgb31bd57"><span class="section-number-2">10</span> ¿Qué es?</h2>
+<ul>
+<li class="fragment fade-in">Rich Hickey lo crea el 2007.</li>
+<li class="fragment fade-in">Es un dialecto de Lisp!</li>
+<li class="fragment fade-in">Es Funcional!</li>
+<li class="fragment fade-in">Dinámico</li>
+<li class="fragment fade-in">Data oriented!</li>
+<li class="fragment fade-in">REPL</li>
+<li class="fragment fade-in"><p>
+Hosted
+</p>
+<aside class="notes">
+<p>
+Mantenido por Cognitec y 126 constribuyentes
+</p>
+<ul>
+<li><p>
+Nació en 1958 y aún sigue vivo.
+</p>
+
+<p>
+Clojure was designed to make a certain kind of software easier to write. That kind of software can be characterized as:
+</p></li>
+
+</ul>
+<ul>
+<li>solving a real-world problem =&gt; must use non-elegant models</li>
+<li>running all the time =&gt; must deal with state and time</li>
+<li>interacting with the world =&gt; must have effects and be affected</li>
+<li><p>
+everything is changing =&gt; must change in ways you can’t predict
+</p>
+
+<ul>
+<li>Es el segundo más antiguo junto a COBOL.</li>
+<li>Fue por mucho tiempo un lenguaje de la academia, calculo, AI, etc</li>
+<li>TIene varios dialectos como Scheme, Common Lips e Emacs Lisp</li>
+
+</ul>
+<ul>
+<li>JVM</li>
+<li>Javascript</li>
+<li>.Net</li>
+
+</ul></li>
+
+</ul>
+
+</aside></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orge129df3">
+<h2 id="orge129df3"><span class="section-number-2">11</span> Dialecto de LISP</h2>
+<ul>
+<li>Lisp nació en 1958 y se reusa a morir</li>
+<li>Inventó las estructuras condicionales</li>
+<li>Nacieron muchas ideas de CS</li>
+<li>Clojure mantiene su sintaxis y simplesa</li>
+<li><b>homoiconocidad</b></li>
+
+</ul>
+
+<blockquote  class="fragment (fade-in)">
+<p>
+“Lisp isn’t a language, it’s a building material.” — Alan Kay
+</p>
+</blockquote>
+
+
+<aside class="notes">
+<p>
+Fue el primer lenguaje homoiconico. Todo el codigo fuente del programa es al mismo tiempo una estructura de datos del lenguaje.
+Esto permite que los Macros sean sencillos y poderosa.
+</p>
+<ul>
+<li>Invento árbol, recolector de basura, tipado dinámico, funciones de orden superior como map y reduce, etc.</li>
+
+</ul>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-org5d55df7">
+<h2 id="org5d55df7"><span class="section-number-2">12</span> Programación Funcional</h2>
+<p>
+Ahora todos son funcionales
+</p>
+
+<p class="fragment (fade-in)">
+Incluso Java incluye funciones anónimas!!
+</p>
+</section>
+</section>
+<section>
+<section id="slide-orgc7a3dd9">
+<h2 id="orgc7a3dd9"><span class="section-number-2">13</span> Programación Funcional</h2>
+<ul>
+<li class="fragment fade-in">Estructuras de datos inmutables</li>
+<li class="fragment fade-in">Concurrencia!</li>
+<li class="fragment fade-in">Estructuras de datos Persistentes: List, Vector, Map &amp; Set</li>
+<li class="fragment fade-in"><p>
+Shared-Memory (en realidad no se duplica, se almacena un diff)
+</p>
+<aside class="notes">
+<ul>
+<li>Cuando quieres cambiar el contenido de alguna estructura, se crea una copia de la original!.</li>
+
+</ul>
+
+</aside></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgad138f6">
+<h2 id="orgad138f6"><span class="section-number-2">14</span> Programación Funcional</h2>
+<ul>
+<li>No es purista como Haskell</li>
+<li>es de tipado dinámico</li>
+<li><p>
+Clojure es &ldquo;interactivo&rdquo;
+</p>
+<aside class="notes">
+<p>
+  Esto quiere decir que la información de los tipos está disponible en runtime.
+Un programa de clojure una vez generado es &ldquo;interactivo&rdquo;. Puedes ir agregando y modificando funciones mientras se ejecuta, he aquí la REPL. Y esto que es una característica importante es casi imposible de lograr con un lenguaje de tipado fuerte
+</p>
+
+</aside></li>
+
+</ul>
+<blockquote >
+<p>
+“Choose immutability and see where it takes you” — Rich Hickey, Clojure creator
+</p>
+</blockquote>
+</section>
+</section>
+<section>
+<section id="slide-org932b622">
+<h2 id="org932b622"><span class="section-number-2">15</span> Programación Funcional</h2>
+<ul>
+<li>Busca simplicidad (no ser más fácil)</li>
+<li>Minimiza los &ldquo;side effects&rdquo;</li>
+<li><p>
+Funciones Puras
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><code trim>    <span style="color: #51afef;">(</span><span style="color: #51afef;">defn</span> <span style="color: #c678dd;">increment</span> <span style="color: #c678dd;">[</span>numbers<span style="color: #c678dd;">]</span> <span style="color: #c678dd;">(</span>map inc numbers<span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+    <span style="color: #51afef;">(</span>increment '<span style="color: #c678dd;">(</span><span style="color: #da8548; font-weight: bold;">1</span> <span style="color: #da8548; font-weight: bold;">2</span> <span style="color: #da8548; font-weight: bold;">3</span> <span style="color: #da8548; font-weight: bold;">4</span> <span style="color: #da8548; font-weight: bold;">5</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+
+
+    <span style="color: #5B6268;">; impure</span>
+    <span style="color: #51afef;">(</span><span style="color: #51afef;">def</span> <span style="color: #dcaeea;">global-value</span> '<span style="color: #c678dd;">(</span><span style="color: #da8548; font-weight: bold;">5</span> <span style="color: #da8548; font-weight: bold;">4</span> <span style="color: #da8548; font-weight: bold;">3</span> <span style="color: #da8548; font-weight: bold;">2</span> <span style="color: #da8548; font-weight: bold;">1</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+    <span style="color: #51afef;">(</span><span style="color: #51afef;">defn</span> <span style="color: #c678dd;">impure-increment</span> <span style="color: #c678dd;">[</span>numbers<span style="color: #c678dd;">]</span>
+      <span style="color: #c678dd;">(</span>map inc global-value<span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+    <span style="color: #51afef;">(</span>impure-increment '<span style="color: #c678dd;">(</span><span style="color: #da8548; font-weight: bold;">1</span> <span style="color: #da8548; font-weight: bold;">2</span> <span style="color: #da8548; font-weight: bold;">3</span> <span style="color: #da8548; font-weight: bold;">4</span> <span style="color: #da8548; font-weight: bold;">5</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+
+</code></pre>
+</div></li>
+
+</ul>
+<aside class="notes">
+<ul>
+<li>utiliza estrategias como aislar y postergar</li>
+
+</ul>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-orgcd1fd30">
+<h2 id="orgcd1fd30"><span class="section-number-2">16</span> Hosted</h2>
+<blockquote >
+<p>
+Si he llegado hasta aquí es por que me aupé en hombros de gigantes - Atribuido a Sr. Isaac Newton
+</p>
+</blockquote>
+
+<center style="margin-top:100px">
+
+<div id="org7b3235c" class="figure">
+<p><img src="/assets/images/java.png" alt="java.png" width="140px" align="left" style="margin-right: 100px;padding-left: 150px;margin-top:-60px;margin-left:150px;" />
+</p>
+</div>
+
+<div id="org486f15a" class="figure">
+<p><img src="/assets/images/javascript.png" alt="javascript.png" width="140px" align="left" style="margin-right: 100px" />
+</p>
+</div>
+
+<div id="orgb3bf1d8" class="figure">
+<p><img src="/assets/images/net.png" alt="net.png" width="140px" align="left" />
+</p>
+</div>
+</center>
+
+</section>
+</section>
+<section>
+<section id="slide-org4915367">
+<h2 id="org4915367"><span class="section-number-2">17</span> Transición</h2>
+<ul>
+<li>Pocos o casi nadie usa el debugger con Node. No lo extrañaras 🤷‍♂️</li>
+<li>Javascript es de tipado dinámico, nada nuevo 💪.</li>
+<li>En la actualidad la mayoria trabaja con un enfoque pseudo-funcional con Javacript. 🎉</li>
+<li>Ya usas un transpilador y un bundler para Javascript. ✅</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgf272e44">
+<h2 id="orgf272e44"><span class="section-number-2">18</span> Sintaxis</h2>
+<p>
+Casi no hay sintaxis que aprender 🎉
+</p>
+
+<table style="width:80%"><tr><td>Javascript</td><td>Clojure</td><tr><td>
+<div class="org-src-container">
+
+<pre  class="src src-javascript"><code trim><span style="color: #da8548; font-weight: bold;">1</span> + <span style="color: #da8548; font-weight: bold;">2</span> + <span style="color: #da8548; font-weight: bold;">3</span>;
+</code></pre>
+</div>
+</td>
+<td>
+
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><code trim><span style="color: #51afef;">(</span>+ <span style="color: #da8548; font-weight: bold;">1</span> <span style="color: #da8548; font-weight: bold;">2</span> <span style="color: #da8548; font-weight: bold;">3</span><span style="color: #51afef;">)</span>
+</code></pre>
+</div>
+</td></tr></table>
+
+<p>
+Y ese es el 90% de la sintaxis
+`(operator op1 op2 op3)`
+</p>
+</section>
+</section>
+<section>
+<section id="slide-orge269f38">
+<h2 id="orge269f38"><span class="section-number-2">19</span> Bindings</h2>
+<p>
+Declaración de variables
+</p>
+
+<table style="width:100%"><tr><td>Javascript</td><td>Clojure</td><tr><td>
+<div class="org-src-container">
+
+<pre  class="src src-javascript"><code trim><span style="color: #51afef;">var</span> <span style="color: #dcaeea;">a</span> = <span style="color: #da8548; font-weight: bold;">5</span>
+<span style="color: #51afef;">var</span> <span style="color: #dcaeea;">b</span> = <span style="color: #da8548; font-weight: bold;">10</span>;
+<span style="color: #51afef;">if</span>(a === <span style="color: #da8548; font-weight: bold;">5</span>){
+    <span style="color: #51afef;">let</span> <span style="color: #dcaeea;">a</span> = <span style="color: #da8548; font-weight: bold;">4</span>;
+    <span style="color: #51afef;">var</span> <span style="color: #dcaeea;">b</span> = <span style="color: #da8548; font-weight: bold;">1</span>
+    console.log(a); <span style="color: #5B6268;">// </span><span style="color: #5B6268;">4</span>
+    console.log(b); <span style="color: #5B6268;">// </span><span style="color: #5B6268;">1</span>
+}
+console.log(a); <span style="color: #5B6268;">// </span><span style="color: #5B6268;">5</span>
+console.log(b); <span style="color: #5B6268;">//</span><span style="color: #5B6268;">1</span>
+</code></pre>
+</div>
+</td>
+<td>
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><code trim><span style="color: #51afef;">(</span><span style="color: #51afef;">def</span> <span style="color: #dcaeea;">a</span> <span style="color: #da8548; font-weight: bold;">5</span><span style="color: #51afef;">)</span>
+<span style="color: #51afef;">(</span><span style="color: #51afef;">def</span> <span style="color: #dcaeea;">b</span> <span style="color: #da8548; font-weight: bold;">10</span><span style="color: #51afef;">)</span>
+<span style="color: #51afef;">(</span><span style="color: #51afef;">if</span> <span style="color: #c678dd;">(</span>== a <span style="color: #da8548; font-weight: bold;">5</span><span style="color: #c678dd;">)</span>
+  <span style="color: #c678dd;">(</span><span style="color: #51afef;">do</span>
+    <span style="color: #98be65;">(</span><span style="color: #51afef;">let</span> <span style="color: #51afef;">[</span>a <span style="color: #da8548; font-weight: bold;">4</span><span style="color: #51afef;">]</span> <span style="color: #51afef;">(</span>println a<span style="color: #51afef;">)</span><span style="color: #98be65;">)</span><span style="color: #5B6268;">; 4</span>
+    <span style="color: #98be65;">(</span><span style="color: #51afef;">def</span> <span style="color: #dcaeea;">b</span> <span style="color: #da8548; font-weight: bold;">1</span><span style="color: #98be65;">)</span><span style="color: #5B6268;">; override</span>
+    <span style="color: #98be65;">(</span>println b<span style="color: #98be65;">)</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span> <span style="color: #5B6268;">;1</span>
+<span style="color: #51afef;">(</span>println a<span style="color: #51afef;">)</span><span style="color: #5B6268;">; 5</span>
+<span style="color: #51afef;">(</span>println b<span style="color: #51afef;">)</span><span style="color: #5B6268;">; 1</span>
+
+</code></pre>
+</div>
+</td></tr></table>
+
+</section>
+</section>
+<section>
+<section id="slide-orgbce4063">
+<h2 id="orgbce4063"><span class="section-number-2">20</span> Condicional</h2>
+<table style="width:100%"><tr><td>Javascript</td><td>Clojure</td><tr><td>
+<div class="org-src-container">
+
+<pre  class="src src-javascript"><code trim>console.log(<span style="color: #a9a1e1;">true</span> ? <span style="color: #98be65;">"Its true"</span> : <span style="color: #98be65;">"Error"</span>)
+
+<span style="color: #51afef;">if</span>(<span style="color: #a9a1e1;">true</span>) {
+    something();
+    otherTask();
+}
+</code></pre>
+</div>
+</td>
+<td>
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><code trim><span style="color: #51afef;">(</span>println <span style="color: #c678dd;">(</span><span style="color: #51afef;">if</span> <span style="color: #a9a1e1;">true</span> <span style="color: #98be65;">"Its true"</span> <span style="color: #98be65;">"Error"</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+
+<span style="color: #51afef;">(</span><span style="color: #51afef;">if</span> <span style="color: #a9a1e1;">true</span>
+  <span style="color: #c678dd;">(</span><span style="color: #51afef;">do</span>
+    <span style="color: #98be65;">(</span>something<span style="color: #98be65;">)</span>
+    <span style="color: #98be65;">(</span>otherTask<span style="color: #98be65;">)</span>
+    <span style="color: #c678dd;">)</span>
+<span style="color: #51afef;">)</span>
+</code></pre>
+</div>
+</td></tr></table>
+
+</section>
+</section>
+<section>
+<section id="slide-org0526ebd">
+<h2 id="org0526ebd"><span class="section-number-2">21</span> Funciones</h2>
+
+<div id="org7b9719b" class="figure">
+<p><img src="/assets/images/funciones.png" alt="funciones.png" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org514a74b">
+<h2 id="org514a74b"><span class="section-number-2">22</span> Sintaxis</h2>
+<div style="text-align:center;width:65%;margin: 0 auto">
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><code trim><span style="color: #51afef;">(</span>println <span style="color: #c678dd;">(</span>take <span style="color: #da8548; font-weight: bold;">10</span> <span style="color: #98be65;">(</span>map <span style="color: #51afef;">(</span><span style="color: #51afef;">fn</span> <span style="color: #c678dd;">[</span>x<span style="color: #c678dd;">]</span> <span style="color: #c678dd;">(</span>* x x<span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span> <span style="color: #51afef;">(</span>range<span style="color: #51afef;">)</span><span style="color: #98be65;">)</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orge9498c3">
+<h2 id="orge9498c3"><span class="section-number-2">23</span> Data</h2>
+<table style="width:100%"><tr><td>Javascript</td><td>Clojure</td><tr><td>
+<div class="org-src-container">
+
+<pre  class="src src-javascript"><code trim><span style="color: #51afef;">class</span> Person {
+    init(name, age) {...}
+    getName() =&gt; {...}
+    getAge() =&gt; {...}
+}
+<span style="color: #51afef;">const</span> <span style="color: #dcaeea;">v</span> = <span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">Person</span>(<span style="color: #98be65;">"Matias"</span>, <span style="color: #da8548; font-weight: bold;">34</span>)
+v.getName()
+v.getAge()
+
+</code></pre>
+</div>
+</td>
+<td>
+<div class="org-src-container">
+
+<pre  class="src src-clojure"><code trim><span style="color: #51afef;">(</span><span style="color: #51afef;">def</span> <span style="color: #dcaeea;">person</span> <span style="color: #c678dd;">{</span><span style="color: #a9a1e1;">:name</span> <span style="color: #98be65;">"Matias"</span> <span style="color: #a9a1e1;">:age</span> <span style="color: #da8548; font-weight: bold;">34</span><span style="color: #c678dd;">}</span><span style="color: #51afef;">)</span>
+<span style="color: #51afef;">(</span>get person <span style="color: #a9a1e1;">:name</span><span style="color: #51afef;">)</span>
+<span style="color: #51afef;">(</span><span style="color: #a9a1e1;">:age</span> person<span style="color: #51afef;">)</span>
+</code></pre>
+</div>
+</td></tr></table>
+
+</section>
+</section>
+<section>
+<section id="slide-orga46875d">
+<h2 id="orga46875d"><span class="section-number-2">24</span> Consiso</h2>
+
+<div id="org627bcad" class="figure">
+<p><img src="/assets/images/ejemplo.png" alt="ejemplo.png" />
+</p>
+</div>
+<aside class="notes">
+<p>
+[<a href="https://roman01la.github.io/javascript-to-clojurescript/">https://roman01la.github.io/javascript-to-clojurescript/</a>](<a href="https://roman01la.github.io/javascript-to-clojurescript/">https://roman01la.github.io/javascript-to-clojurescript/</a>)
+</p>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-org10a3979">
+<h2 id="org10a3979"><span class="section-number-2">25</span> Video</h2>
+
+<iframe title="egghead-egghead-crear-un-servidor-web-basico-con-clojure-usando-http-kit-y-compojure" src="https://egghead.io/lessons/egghead-crear-un-servidor-web-basico-con-clojure-usando-http-kit-y-compojure/embed" frameborder="0" allow="autoplay; fullscreen" allowfullscreen="" style="width: 100%; height: 700px;"></iframe>
+</section>
+</section>
+<section>
+<section id="slide-org5f732ee">
+<h2 id="org5f732ee"><span class="section-number-2">26</span> Me pueden encontrar</h2>
+<ul>
+<li><a href="https://matiashernandez.dev">https://matiashernandez.dev</a></li>
+<li>Twitter @matiasfha</li>
+<li>Github @matiasfha <a href="https://github.com/matiasfha/ama">https://github.com/matiasfha/ama</a></li>
+<li>dev.to @matiasfha</li>
+<li>hashnode @matiasfh</li>
+<li>Comunidad Remota controlremoto.io/comunidad</li>
+<li>y en egghead.io, cafecon.tech, partyCorgiNetwork y devsChile</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org7e487da">
+<h2 id="org7e487da"><span class="section-number-2">27</span> Preguntas</h2>
+
+<div id="org6b9ca86" class="figure">
+<p><img src="/assets/images/questions.jpg" alt="questions.jpg" />
+</p>
+</div>
+</section>
+</section>
+</div>
+</div>
+<p> Created by matiasfha. </p>
+
+<script src="/assets/reveal.js/dist/reveal.js"></script>
+<script src="/assets/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="/assets/reveal.js/plugin/notes/notes.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown,RevealNotes],
+width:1200, height:800,margin:0.1,slideNumber:false,showSlideNumber:'speaker',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+]
+});
+</script>
+</body>
+</html>
