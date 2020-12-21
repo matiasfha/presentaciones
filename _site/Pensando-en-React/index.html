@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Presentacion Pensando en React</title>
+<meta name="author" content="(Matias Hernández)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="/assets/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="/assets/reveal.js/dist/theme/sky.css" id="theme"/>
+
+<link rel="stylesheet" href="/assets/local.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '/assets/reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<meta name="description" content="Pensando en React">
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288L3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K" alt="" height="120">
+<h3>Pensando en React</h3> <p>Meetup: React Chile</p><small><date>05 Diciembre 2020</date></small>
+<center><img src="https://matiashernandez.dev/static/logo-f117a1ab31bf89c07be14bc6d5c691c1.png" alt="Sitio de Matias Hernandez" height="50"></center>
+</section>
+
+<section>
+<section id="slide-orgba8bb4a">
+<h2 id="orgba8bb4a"><span class="section-number-2">1</span> 👋 Hola!</h2>
+<ul>
+<li>Matías Hernández</li>
+<li>Soy Ingeniero de Software</li>
+<li>10+ al teclado</li>
+<li>9+ de forma remota en 🇺🇸</li>
+<li>@matiasfha</li>
+
+</ul>
+<table style="width:50%;margin: 0 30%"><tr><td>
+
+<div id="org5020586" class="figure">
+<p><img src="./images/twitter.png" alt="twitter.png" width="60px" align="center" /> 
+</p>
+</div>
+</td><td>
+
+<div id="orgd3ec75f" class="figure">
+<p><img src="./images/github.png" alt="github.png" width="60px" align="center" /> 
+</p>
+</div>
+</td><td>
+
+<div id="orgad8f432" class="figure">
+<p><img src="https://matiashernandez.dev/static/logo-f117a1ab31bf89c07be14bc6d5c691c1.png" alt="logo-f117a1ab31bf89c07be14bc6d5c691c1.png" width="60px" align="center" />
+</p>
+</div>
+</td></tr></table>
+
+<aside class="notes">
+<p>
+Comencé hace unos 20 años con un poco de html y css para luego conocer PHP..
+Estudié Ingeniería Civil Informática
+Comencé oficialmente en una startup en Talca: VisionLabs escribiendo C++ y Javascript
+</p>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-org8caa978">
+<h2 id="org8caa978"><span class="section-number-2">2</span> 👋 Hola!</h2>
+<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 1rem">
+<div class="org-center">
+
+<div id="org957fb3a" class="figure">
+<p><img src="./images/modus.png" alt="modus.png" width="80px" />
+</p>
+</div>
+
+<p>
+We are hiring!
+<a href="https://moduscreate.com">https://moduscreate.com</a>
+</p>
+</div>
+
+<div class="org-center">
+
+<div id="orgf4c1d40" class="figure">
+<p><img src="./images/egghead.png" alt="egghead.png" width="80px" />
+</p>
+</div>
+
+<p>
+Screencasts for badass developers
+<a href="https://egghead.io">https://egghead.io</a>
+</p>
+</div>
+<div class="org-center">
+
+<div id="orge3e0c2b" class="figure">
+<p><img src="./images/auth0.png" alt="auth0.png" width="80px" />
+</p>
+</div>
+
+<p>
+Auth service for your JAMstack
+</p>
+</div>
+
+</div>
+
+
+<aside class="notes">
+<ul>
+<li>Y Soy instructor en egghead.io</li>
+<li>Saben de egghead?</li>
+<li>Hoy sorteamos 1 suscripción!</li>
+<li>Soy Auth0 Ambassador.</li>
+
+</ul>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgdd6c700">
+<h2 id="orgdd6c700"><span class="section-number-2">3</span> 👋 Hola!</h2>
+
+<div id="orgb5fe336" class="figure">
+<p><img src="./images/1500x500.jpeg" alt="1500x500.jpeg" />
+</p>
+</div>
+<aside class="notes">
+<p>
+Y además tengo dos podcasts
+Cafe con Tech y Control Remoto donde conversamos sobre la vida y el trabajo remoto
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org30c766c">
+<h2 id="org30c766c"><span class="section-number-2">4</span> Pensando en React</h2>
+<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0xMS41IC0xMC4yMzE3NCAyMyAyMC40NjM0OCI+CiAgPHRpdGxlPlJlYWN0IExvZ288L3RpdGxlPgogIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIyLjA1IiBmaWxsPSIjNjFkYWZiIi8+CiAgPGcgc3Ryb2tlPSIjNjFkYWZiIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIi8+CiAgICA8ZWxsaXBzZSByeD0iMTEiIHJ5PSI0LjIiIHRyYW5zZm9ybT0icm90YXRlKDYwKSIvPgogICAgPGVsbGlwc2Ugcng9IjExIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjApIi8+CiAgPC9nPgo8L3N2Zz4K" alt="" height="200">
+</section>
+</section>
+<section>
+<section id="slide-org7491e35">
+<h2 id="org7491e35"><span class="section-number-2">5</span> Pero antes</h2>
+
+<div id="orgffec2b6" class="figure">
+<p><img src="./images/mic-audience.jpg" alt="mic-audience.jpg" width="80%" />
+</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org059eb99">
+<h2 id="org059eb99"><span class="section-number-2">6</span> Que es React?</h2>
+<ul>
+<li>Publicado el 2003, es una librería para crear interfaces de forma <b>declarativa</b></li>
+<li>Implementó nuevas ideas sobre como crear aplicaciones web.</li>
+<li>Propone usar la composición de pequeñas y aisladas unidades para crear interfaces complejas.</li>
+<li>Propone utilizar un nuevo concepto: VDOM</li>
+<li>Define la interfaz como una función del estado</li>
+<li>Permite utilizar una forma declarativa para definir la interfaz.</li>
+<li>Propone una nueva sintaxis sobre Javascript.</li>
+<li>Permite su adopción de forma gradual.</li>
+
+</ul>
+<aside class="notes">
+<p>
+Es una librería javascript para crear interfaces de forma declarativa.
+Te permite componenr interfaces complejas desde pequeñas  y aisladas piezas de codigo llamadas &ldquo;componentes&rdquo;.
+</p>
+
+<p>
+Por medio de una sintax &ldquo;similar&rdquo; al html React te permite <b>declarar</b> que quieres mostrar en pantalla, sin preocuparte de <b>como</b> esta interfaz se despliega.
+</p>
+
+<p>
+React define que la interfaz es una función del estado, es decir, lo que se despliega en pantalla es el resultado de aplicar cierta lógica, cambios o cálculos sobre un conjunto de datos.
+</p>
+
+<p>
+Esta función del estado es una función pura, es decir, es predecible ya que siempre que reciba los mismos datos, la interfaz creada será la misma.
+</p>
+
+
+<p>
+React, se encarga de la creación y manipulación de la interfaz, así como también del como los datos se &ldquo;conectan&rdquo; con la interfaz.
+</p>
+
+<p>
+Es opensource pero mantenido y dirigido por facebook.
+</p>
+
+<p>
+Lanzado el 2013 fue en su momento controversial por la forma en que se proponía crear aplicaciones, cambiando el concepto de &ldquo;responsabilidad única&rdquo;, desde las ideas de separar logica, presentación y representación a cambiar por resposabilidad.
+</p>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-org30b271d">
+<h2 id="org30b271d"><span class="section-number-2">7</span> ¿Qué necesito saber?</h2>
+<ul>
+<li>Familiaridad con HTML y CSS.</li>
+<li>Conocimientos básicos de Javascript y programación.</li>
+<li>Entendimiento básico del DOM</li>
+<li>Familiaridad con caraterísticas y sintaxes de ES6+ (no excluyente)</li>
+<li>Node.js y npm instalados</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgd4c15d9">
+<h2 id="orgd4c15d9"><span class="section-number-2">8</span> ¿Qué es VDOM?</h2>
+<ul>
+<li class="fragment fade-in">Un concepto que define la creación de una representación ideal o virtual de la interfaz</li>
+<li class="fragment fade-in">Esta representación es la que se manipula y se sincroniza con el DOM <b>reconciliacion</b></li>
+<li class="fragment fade-in">Permite indicarle a React en que estado se quiere la UI sin indicar como modificar el DOM.</li>
+<li class="fragment fade-in">Permite el renderizado incremental del DOM (React Fiber)</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orga3bc30e">
+<h2 id="orga3bc30e"><span class="section-number-2">9</span> Como funciona VDOM</h2>
+<ul>
+<li>Al renderizar un componente, todos los objetos del VDOM son actualizados.</li>
+<li>React compara el nuevo arbol VDOM con el estado anterior y obtiene la diferencia</li>
+<li>Utiliza esta diferencia para actualizar el DOM <b>solo en esos elementos</b></li>
+
+</ul>
+<aside class="notes">
+<ul>
+<li>Every DOM object have a VDOM representation</li>
+<li>Have the same properties as the DOM but without the power of changing the UI.</li>
+<li>Manipular el DOM es lento, el VDOM es mas rápido.</li>
+
+</ul>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org4bd947d">
+<h2 id="org4bd947d"><span class="section-number-2">10</span> Ejemplo VDOM</h2>
+<iframe src="https://codesandbox.io/embed/interesting-sutherland-bo74b?fontsize=14&hidenavigation=1&theme=dark"
+     style="width:100%; height:700px; border:0; border-radius: 4px; overflow:hidden;"
+     title="interesting-sutherland-bo74b"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+</section>
+</section>
+<section>
+<section id="slide-orga0da7f4">
+<h2 id="orga0da7f4"><span class="section-number-2">11</span> ReactDOM</h2>
+<ul>
+<li>React es la librería para crear interfaces de usuario de forma declarativa</li>
+<li>ReactDOM es el paquete que provee métodos específicos para la manipulación del DOM:
+<ul>
+<li>`render()`: Renderiza un árbol de componentes.</li>
+<li>`findDOMNode()`</li>
+<li>`unmountComponentAtNode()`</li>
+<li>`hydrate()`: Equivalente a `render` pero utilizar en SSR.</li>
+<li>`createPortal()`</li>
+
+</ul></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org4afbcc7">
+<h2 id="org4afbcc7"><span class="section-number-2">12</span> Componentes</h2>
+<ul>
+<li>Una nueva forma de pensar en como construir una aplicaicón</li>
+<li>Primer paso es &ldquo;dibujar cajas&rdquo; para cada componente</li>
+<li>Es una habilidad básica y necesaria.</li>
+<li>Similar a como los diseñadores trabajan.</li>
+<li>Proceso mental que permite reconocer patrones y crear una arquitectura</li>
+<li><p>
+Proceso sin código
+</p>
+<aside class="notes">
+<p>
+  Una de las cosas importantes de React es el como cambia tu forma de pensar sobre como se costruye una aplicación.
+Una habilidad basica y necesaria para este proceso es ser capaz de crear componentes en base a un diseño o idea de nuestra aplicación.
+</p>
+
+<p>
+En el proceso de construcción de una aplicación, quizá el primer paso es &ldquo;dibujar cajas&rdquo; que te permitan definir cada componente. 
+este es un buen momento para hablar con el equipo de diseño (si existe) ya que quiza este proceso ya fue realizado por ellos.
+</p>
+
+<p>
+Este es un proceso muy similar a como los diseñadores trabajan cuando crean una interfaz.
+</p>
+
+<p>
+Es un proceso mental que una vez adquirido te permite reconocer patrones de componentes y crear una arquitecura en terminos de composicion de ellos
+</p>
+
+<p>
+Este proceso puede iniciar sin siquiera conocer o escribir una linea de código. 
+</p>
+
+</aside></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgfdbe848">
+<h2 id="orgfdbe848"><span class="section-number-2">13</span> Revisando Interfaz</h2>
+
+<div id="orgbbeb6c3" class="figure">
+<p><img src="./images/interfaz.png" alt="interfaz.png" width="80%" />
+</p>
+</div>
+
+<p>
+Pensemos en como crear pequeños trozos reutilizables
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org8cbebaa">
+<h2 id="org8cbebaa"><span class="section-number-2">14</span> ¿Qué es un componente?</h2>
+<ul>
+<li>Trozos individuales de la UI</li>
+<li>Conjuntos lógicos de información</li>
+<li>&ldquo;Cajas&rdquo; reutilizables</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+podemos tomar esta interfaz y literalmente dibujar las cajas que nos permitan reconocer estas piezas.
+</p>
+
+<p>
+Recuerda que son &ldquo;conjunto logicos&rdquo; y ojala lo suficientemente pequeños para ser reutilizables
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgdb025f4">
+<h2 id="orgdb025f4"><span class="section-number-2">15</span> Revisando Interfaz</h2>
+
+<div id="org0196ce0" class="figure">
+<p><img src="./images/main-components.png" alt="main-components.png" />
+</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orga0dfea8">
+<h2 id="orga0dfea8"><span class="section-number-2">16</span> Revisando Interfaz: Feed</h2>
+
+<div id="org985c2ee" class="figure">
+<p><img src="./images/center-ui.png" alt="center-ui.png" width="40%" />
+</p>
+</div>
+<aside class="notes">
+<p>
+Mirando la interfaz de twitter, y centrandose en la parte del feed podemos ver este componente que en general es el mismo componente, con diferentes variaciones que se repite cada vez. 
+La estructura es identifica.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org519bd32">
+<h2 id="org519bd32"><span class="section-number-2">17</span> Revisando Interfaz: Tweet</h2>
+
+<div id="org3e1d9e7" class="figure">
+<p><img src="./images/tweet.gif" alt="tweet.gif" width="60%" />
+</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org532cceb">
+<h2 id="org532cceb"><span class="section-number-2">18</span> Revisando Interfaz: Tweet names</h2>
+
+<div id="org958e0db" class="figure">
+<p><img src="./images/tweet.png" alt="tweet.png" width="60%" />
+</p>
+</div>
+
+<aside class="notes">
+<p>
+Demosles nombres, a cada uno de estos componentes utilizando una herramienta que ya conocemos. HTML
+</p>
+
+<p>
+Por que utilizar estas etiquetas HTML, pero con mayuscula inicial? por que esta es la forma en que escribiremos nuestros componentes en el código, utilizando estas mismas estructuras para representar nuestra UI. Esta etiqueta representa toda la colección de componentes, es decir, cada vez que escribamos &lt;Header /&gt; en nuestro codigo estaremos accediendo a toda la representación, estado y logica de este componente.
+</p>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-orgc6f7a4f">
+<h2 id="orgc6f7a4f"><span class="section-number-2">19</span> Hora de componer</h2>
+<ul>
+<li>Se require un &ldquo;algo&rdquo; para sostener los componentes</li>
+<li>Este es también un componente: Padre</li>
+<li>El padre sirve también como pasarela de mensajes entre los hijos</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+Para componener estos componentes es necesario tener un &ldquo;algo&rdquo; que los sostenga, un canva en blanco en el que poder dibujar esta interfaz, ese componente es el llamado Padre, y que en este caso puede ser un simple cuadro negro que recibirá todos estos componentes y los pondra uno al lado del otro.
+Además el componente padre puede servir como pasarela de mensajes entre estos componentes permitiendoles así comunicarse.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org8cf9fe7">
+<h2 id="org8cf9fe7"><span class="section-number-2">20</span> ¿Cómo saber que es componente?</h2>
+<ul>
+<li>Decision similar a crear una nueva función.</li>
+
+</ul>
+<ul width="30%">
+<li><img src="./images/single-responsibility1.png" alt="single-responsibility1.png" /></li>
+<li>Single Responsibility Principle</li>
+<li>Reusabilidad</li>
+<li>⚠️ <b>No optimices prematuramente</b></li>
+<li>⚠️no crees <b>abstracciones innecesarias</b></li>
+
+</ul>
+
+<aside class="notes">
+<p>
+Es una decisión similar a decidir cuando crear o no una nueva funcion. una de estas ténicas y probablemente la más usada es el principio de responsabilidad unica, es decir, el componente deberia hacer una y solo una cosa. Si crece más allá de ese responsabilidad, entonces deberias descomponerlo.
+Otro punto es la reusabilidad. ¿Usarás este componente en más de un lugar? si la respuesta es si, entonces hay que descoponenerlo y crear uno en particular
+</p>
+
+<p>
+<b><b>Cuidado</b></b> No ha que hacer optimizaciones prematuras y crear abstracciones innecesarias antes de tiempo, si bien ambas ténicas son completamente validas y ciertas, lo es también que si: no estás seguro de si se reutilizará, no tiene mucho sentido dividir un componente a menos claro, que sea por cuestiones de mantenibilidad.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgb9772c1">
+<h2 id="orgb9772c1"><span class="section-number-2">21</span> Relacion data y UI</h2>
+<ul>
+<li>UI es la forma de comunicarse con el usuario</li>
+<li>UI es una representacion de los datos</li>
+<li>Divide tu interfaz en componentes donde cada componente represente una parte de los datos</li>
+
+</ul>
+<aside class="notes">
+<p>
+La interfaz es la forma que tiene la aplicación web de mostrar información al usuario, de presentar el Modelo de una forma que el usuario pueda entender, pero si el modelo de datos fue diseñado adecuadamente podrás ver que muchas veces la interfaz es muy similar y se &ldquo;mapea&rdquo; correctamete con el Modelo de datos.
+Esto es por que los modelos de datos y la interfaz se adhieren al mismo tipo de arquitectura de la información.
+Divide tu interfaz en componentes, donde cada componente representa una parte de los datos.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org69c7444">
+<h2 id="org69c7444"><span class="section-number-2">22</span> Code time</h2>
+
+<div id="orgebf8741" class="figure">
+<p><img src="./images/code-time.jpg" alt="code-time.jpg" />
+</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org6041483">
+<h2 id="org6041483"><span class="section-number-2">23</span> Version estática</h2>
+<ul>
+<li>Momento de convertir las cajas en código</li>
+<li>Hay varias formas de utilizar react</li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-html"><code trim>&lt;<span style="color: #c678dd;">script</span> <span style="color: #dcaeea;">src</span>=<span style="color: #98be65;">"https://unpkg.com/react@17/umd/react.development.js"</span> crossorigin&gt;&lt;/<span style="color: #c678dd;">script</span>&gt;
+&lt;<span style="color: #c678dd;">script</span> <span style="color: #dcaeea;">src</span>=<span style="color: #98be65;">"https://unpkg.com/react-dom@17/umd/react-dom.development.js"</span> crossorigin&gt;&lt;/<span style="color: #c678dd;">script</span>&gt;
+<span style="color: #5B6268;">&lt;!-- </span><span style="color: #5B6268;">ADD JSX SUPPORT </span><span style="color: #5B6268;">--&gt;</span>
+&lt;<span style="color: #c678dd;">script</span> <span style="color: #dcaeea;">src</span>=<span style="color: #98be65;">"https://unpkg.com/babel-standalone@6/babel.min.js"</span>&gt;&lt;/<span style="color: #c678dd;">script</span>&gt;
+...
+...
+&lt;<span style="color: #c678dd;">script</span>&gt;
+const domContainer = document.querySelector('#like_button_container');
+ReactDOM.render(e(LikeButton), domContainer);
+&lt;/<span style="color: #c678dd;">script</span>&gt;
+</code></pre>
+</div>
+<ul>
+<li>CRA o CodeSandbox, etc</li>
+
+</ul>
+<aside class="notes">
+<p>
+Ahora es momento de convertir estas cajas que diseñamos en codigo React real.
+Hay varias formas de utilizar react en tu aplicación, desde insertarlo directamente en tu archivo HTML utilizando `&lt;script&gt;` o utilizar aplicaciones como Create React app que configuran todo un ambiente de desarrollo para ti o utilizar codesanbox.io que en el fondo tmabién utiliza CRA.
+</p>
+
+<p>
+PD: Pueden acceder a este ejemplo directamente en github y clonarlo
+</p>
+
+
+<p>
+La forma más sencilla de comenzar es creando una seccion de tu aplicacion de forma estática, es decir, una aplicación que mapea tu modelo de datos en forma de interfaz pero sin interactividad, un solo estado.
+</p>
+
+<p>
+La forma de pasar datos de un componente a otro es mediante el uso de las propiedades de cada componente o <b>props</b>
+</p>
+
+<p>
+Puedes comenzar construyendo tus componentes desde los mas macro: top-down o desde lo más pequeño bottom-up. Normalmente en proyectos grandes se comienza en forma bottom-up y se van agregando test a cada componente.
+</p>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-org7fe663b">
+<h2 id="org7fe663b"><span class="section-number-2">24</span> Sobre JSX</h2>
+<ul>
+<li>JS permite manipular el DOM, por medio de APIs</li>
+<li>React es declarativo. No manipulamos el DOM directamente</li>
+<li>React ofrece una API para la creación de componentes</li>
+<li>React soporta múltiples plataformas una de ellas es el DOM mediante ReactDOM.</li>
+
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-javascript"><code trim> <span style="color: #51afef;">const</span> <span style="color: #dcaeea;">rootElement</span> = document.createElement(<span style="color: #98be65;">'div'</span>)
+ rootElement.setAttribute(<span style="color: #98be65;">'id'</span>,<span style="color: #98be65;">'root'</span>)
+ document.body.append(rootElement)
+
+ <span style="color: #51afef;">const</span> <span style="color: #dcaeea;">element</span> = document.createElement(<span style="color: #98be65;">'div'</span>)
+ element.textContent = <span style="color: #98be65;">'Hola Mundo'</span>
+ element.className = <span style="color: #98be65;">'container'</span>
+ rootElement.append(element)
+</code></pre>
+</div>
+<aside class="notes">
+<p>
+javascript permite manipular el DOM y agregar, quitar o actualizar el arbol de componentes, javascript ofrece varias api que permiten acceder a los elementos html para ser modificados. Esta es la forma imperativa de trabajar con interfaces y es lo que jQuery (y otros) proponía.
+</p>
+
+<p>
+React es declarativo, por lo que no tenemos que manipular el DOM directamente, si no, sólo definifnr o declarar que queremos que se muestre en el DOM.
+</p>
+
+<p>
+Para eso React ofrece una serie de API que permiten crear los componentes que desplegaran información. En el fondo React utiliza las mismas api imperativas para manipular el DOM que han existido dsde que JS se inventó, pero esto es para que tu no tengas que hacerlo directamente.
+</p>
+
+<p>
+One important thing to know about React is that it supports multiple platforms (for example, native and web). Each of these platforms has its own code necessary for interacting with that platform, and then there&rsquo;s shared code between the platforms.
+</p>
+
+<p>
+With that in mind, you need two JavaScript files to write React applications for the web:
+</p>
+
+<p>
+React: responsible for creating React elements (kinda like document.createElement())
+ReactDOM: responsible for rendering React elements to the DOM (kinda like rootElement.append())
+</p>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-orge51fdab">
+<h2 id="orge51fdab"><span class="section-number-2">25</span> El mundo sin JSX</h2>
+<div class="org-src-container">
+
+<pre  class="src src-javascript"><code trim><span style="color: #51afef;">const</span> <span style="color: #dcaeea;">rootElement</span> = document.getElementById(<span style="color: #98be65;">'root'</span>)
+
+<span style="color: #51afef;">const</span> <span style="color: #dcaeea;">helloElement</span> = React.createElement(<span style="color: #98be65;">'span'</span>,<span style="color: #a9a1e1;">null</span>,<span style="color: #98be65;">'Hola'</span>)
+
+<span style="color: #51afef;">const</span> <span style="color: #dcaeea;">worldElement</span> = React.createElement(<span style="color: #98be65;">'span'</span>, { children: <span style="color: #98be65;">'Mundo'</span> })
+
+<span style="color: #51afef;">const</span> <span style="color: #dcaeea;">element</span> = React.createElement(
+    <span style="color: #98be65;">'div'</span>,
+    { className: <span style="color: #98be65;">'container'</span> },
+    helloElement,
+    <span style="color: #98be65;">' '</span>,
+    worldElement
+)
+
+ReactDOM.render(element, rootElement)
+</code></pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgacc0d5c">
+<h2 id="orgacc0d5c"><span class="section-number-2">26</span> JSX</h2>
+<ul>
+<li>JSX es mas intuitivo que la api base de React.</li>
+<li>JSX -&gt; Javascript XML.</li>
+<li>Y finalmente más fácil de leer y <b>entender</b>.</li>
+<li>JSX no es realmente JS. Requiere un transpilador.</li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-javascript"><code trim><span style="color: #51afef;">const</span> <span style="color: #dcaeea;">ui</span> = &lt;<span style="color: #c678dd;">h1</span> <span style="color: #dcaeea;">id</span>=<span style="color: #98be65;">"greeting"</span>&gt;<span style="color: #bbc2cf; background-color: #21242b;">Hey there</span>&lt;/<span style="color: #c678dd;">h1</span>&gt;
+
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#8595; &#8595; &#8595; &#8595; compiles to &#8595; &#8595; &#8595; &#8595;</span>
+
+<span style="color: #51afef;">const</span> <span style="color: #dcaeea;">ui</span> = React.createElement(<span style="color: #98be65;">'h1'</span>, {id: <span style="color: #98be65;">'greeting'</span>, children: <span style="color: #98be65;">'Hey there'</span>})
+</code></pre>
+</div>
+
+<ul>
+<li><b>Entrena tu cerebro</b> para actuar como transpilador y ver la versión &ldquo;cruda&rdquo; de lo que escribes.</li>
+
+</ul>
+<aside class="notes">
+<p>
+JSX is more intuitive than the raw React API and is easier to understand when reading the code. It&rsquo;s fairly simple HTML-like syntactic sugar on top of the raw React APIs:
+</p>
+
+<p>
+Because JSX is not actually JavaScript, you have to convert it using something called a code compiler. Babel is one such tool.
+</p>
+
+<p>
+🦉 Pro tip: If you&rsquo;d like to see how JSX gets compiled to JavaScript, check out the online babel REPL here.
+</p>
+
+<p>
+If you can train your brain to look at JSX and see the compiled version of that code, you&rsquo;ll be MUCH more effective at reading and using it! I strongly recommend you give this some intentional practice.
+</p>
+
+<p>
+JSX es la sintaxis por la que probablemente React es más conocido.
+Pero que es JSX.
+JSX es esta sintaxis similar a HTML que se escribe directamente dentro de nuestro código Javascript.
+JSX permite crear y declarar elementos html personalizados.
+Si bien el uso de JSX no es obligatorio es una parte importante de la productividad con React.
+</p>
+
+<p>
+JSX es una forma sencilla de ejecutar la funcion React.createElement(&rsquo;Header&rsquo;, props, children). Finalmente React es sólo javascript.
+</p>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-org091902b">
+<h2 id="org091902b"><span class="section-number-2">27</span> Arrays</h2>
+<ul>
+<li>Renderizar un arreglo es un caso muy común.</li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-javascript"><code trim><span style="color: #51afef;">const</span> <span style="color: #dcaeea;">list</span> = [<span style="color: #98be65;">'One'</span>, <span style="color: #98be65;">'Two'</span>, <span style="color: #98be65;">'Three'</span>]
+
+<span style="color: #5B6268;">//</span><span style="color: #5B6268;">const listUI = list.map(listItem =&gt; &lt;li&gt;{listItem}&lt;/li&gt;)</span>
+<span style="color: #5B6268;">//</span><span style="color: #5B6268;">&lt;ul&gt;{listUI}&lt;/ul&gt;</span>
+<span style="color: #51afef;">const</span> <span style="color: #dcaeea;">ui</span> = (
+  &lt;ul&gt;
+    {list.map(listItem =&gt; (
+      &lt;li&gt;{listItem}&lt;/li&gt;
+    ))}
+  &lt;/ul&gt;
+)
+
+</code></pre>
+</div>
+<aside class="notes">
+<p>
+
+</p>
+
+<p>
+Rendering Arrays
+</p>
+
+<p>
+Background
+</p>
+
+<p>
+One of the more tricky things with React is the requirement of a key prop when you attempt to render a list of elements.
+</p>
+
+<p>
+If we want to render a list like this, then there&rsquo;s no problem:
+</p>
+
+<p>
+const ui = (
+  &lt;ul&gt;
+    &lt;li&gt;One&lt;/li&gt;
+    &lt;li&gt;Two&lt;/li&gt;
+    &lt;li&gt;Three&lt;/li&gt;
+  &lt;/ul&gt;
+)
+But rendering an array of elements is very common:
+</p>
+
+<p>
+Those will generate the same HTML, but what it actually does is slightly different. Let&rsquo;s re-write it to see that difference:
+</p>
+
+<p>
+So we&rsquo;re interpolating an array of renderable elements. This is totally acceptable, but it has interesting implications for when things change over time.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org78d92aa">
+<h2 id="org78d92aa"><span class="section-number-2">28</span> Arrays</h2>
+<p>
+¿Qué ocurre si se hace agrega un nuevo elemento a la lista?
+<img src="./images/whats-the-worst.jpg" alt="whats-the-worst.jpg" />
+</p>
+<aside class="notes">
+<p>
+If you re-render that list with an added item, React doesn&rsquo;t really know whether you added an item in the middle, beginning, or end. And the same goes for when you remove an item (it doesn&rsquo;t know whether that happened in the middle, beginning, or end either).
+</p>
+
+<p>
+In this example, it&rsquo;s not a big deal, because React&rsquo;s best-guess is right and it works out ok. However, if any of those React elements represent a component that is maintaining state, that can be pretty problematic
+</p>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-orgfe3c088">
+<h2 id="orgfe3c088"><span class="section-number-2">29</span> Ejemplo</h2>
+<iframe src="https://codesandbox.io/embed/unruffled-voice-mdooi?fontsize=14&hidenavigation=1&theme=dark"
+     style="width:100%; height:700px; border:0; border-radius: 4px; overflow:hidden;"
+     title="react-arrays-keys-examples"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+<aside class="notes">
+<ul>
+<li>Solution</li>
+
+</ul>
+<p>
+You&rsquo;ll feel this problem with anything that maintains state over time. The input is a good example. Any component that&rsquo;s maintaining state will also experience this problem, so the key prop is really important. Whenever you see that warning, you want to make sure that you provide a unique key for each element of the array that you&rsquo;re rendering.
+</p>
+
+<p>
+4:04 Just randomly generating a key, right here, is not going to cut it because it needs to be consistent for the React element that&rsquo;s representing that particular item. Having an id is preferable because that&rsquo;s something that can be unique for each one of these items.
+</p>
+
+<p>
+4:20 If you don&rsquo;t have an id, then maybe you could generate an id for the items before you go to render them, or you could use something else about the items that are unique but don&rsquo;t try to use the index of that item because that&rsquo;s the default behavior.
+</p>
+
+<p>
+4:33 If we do item and then index and we pass the index, then we&rsquo;ll get the exact same behavior that we had before, which is not the behavior that we want. Don&rsquo;t use the index. That&rsquo;ll silence the warning but not get rid of the problem. You need to do some unique identifier for the particular item that you&rsquo;re trying to represent when you&rsquo;re rendering an array.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org3c665c5">
+<h2 id="org3c665c5"><span class="section-number-2">30</span> Mas ejemplos</h2>
+<iframe src="https://codesandbox.io/embed/vigilant-hill-ej9u3?fontsize=14&hidenavigation=1&module=%2Fsrc%2FApp.js&theme=dark"
+     style="width:100%; height:700px; border:0; border-radius: 4px; overflow:hidden;"
+     title="vigilant-hill-ej9u3"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+
+</section>
+</section>
+<section>
+<section id="slide-org5a26992">
+<h2 id="org5a26992"><span class="section-number-2">31</span> Next steps</h2>
+<p>
+Agregar interactividad mediante el uso de estado y comunicación con la api.
+</p>
+
+<ul>
+<li>Compartir el estado utilizando Context API</li>
+<li>Agregar Rutas</li>
+<li>CSS ¿Cómo?</li>
+<li>build &amp; deploy</li>
+
+</ul>
+<aside class="notes">
+<p>
+Como comunicarse con la api?. Mediante el uso de fetch para interactuar con ella
+es necesario manejar los estados de las peticiones
+</p>
+
+<p>
+Context API es una forma de manejar el estado. Redux, MST, react-query
+</p>
+
+<p>
+react-router de factor standard
+</p>
+
+<p>
+CSS? CSS-in-JS, css modules, plain old css
+</p>
+
+<p>
+build? CRA lo hace por ti
+Deploy? Muchas opciones, AWS, Netlify, Heroku, Vercel, etc
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org9dd6c6e">
+<h2 id="org9dd6c6e"><span class="section-number-2">32</span> Me pueden encontrar</h2>
+<ul>
+<li><a href="https://matiashernandez.dev">https://matiashernandez.dev</a></li>
+<li>newsletter <a href="http://matiashernandez.ck.page">http://matiashernandez.ck.page</a></li>
+<li>Twitter @matiasfha</li>
+<li>Github @matiasfha <a href="https://github.com/matiasfha/ama">https://github.com/matiasfha/ama</a></li>
+<li>hashnode y dev.to @matiasfha</li>
+<li>Comunidad Remota [controlremoto.io/comunidad](<a href="http://controlremoto.io/comunidad">http://controlremoto.io/comunidad</a>), devsChile y FrontendCafe</li>
+<li>y en [buymeaccoffee.com/matiasfha](<a href="https://buymeaccoffee.com/matiasfha">https://buymeaccoffee.com/matiasfha</a>) para suscribirse o reservar una hora de Office Hours</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org0f9665a">
+<h2 id="org0f9665a"><span class="section-number-2">33</span> Preguntas</h2>
+
+<div id="orgbc951af" class="figure">
+<p><img src="./images/questions2.jpg" alt="questions2.jpg" />
+</p>
+</div>
+</section>
+</section>
+</div>
+</div>
+<p> Created by matiasfha. </p>
+<script src="/assets/reveal.js/dist/reveal.js"></script>
+<script src="/assets/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="/assets/reveal.js/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown,RevealNotes],
+width:1200,height:800,margin:0.1,slideNumber:false,showSlideNumber:'speaker',transition:'page',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+{src: '/assets/reveal.js/plugin/chalkboard/plugin.js'}]
+});
+</script>
+</body>
+</html>
